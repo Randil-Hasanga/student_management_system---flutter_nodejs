@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
   Future<void> getStudents() async {
     try {
       Response response = await dio.get(
-          "https://react-node-testapp-750b3b55ddda.herokuapp.com/students");
+          "${dotenv.env['SERVER_URL']}/students");
 
       if (response.statusCode == 200) {
         setState(() {
